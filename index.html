@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krystsina Baravik — Motion Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0C0C0E;
+    --bg2: #141416;
+    --bg3: #1C1C20;
+    --line: rgba(255,255,255,0.07);
+    --line2: rgba(255,255,255,0.12);
+    --text: #F0EEE8;
+    --muted: rgba(240,238,232,0.45);
+    --accent: #C8FF57;
+    --accent2: #57C8FF;
+    --accent3: #FF8A57;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* noise overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 3rem;
+    border-bottom: 1px solid var(--line);
+    background: rgba(12,12,14,0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  nav { display: flex; gap: 2rem; align-items: center; }
+  nav a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--text); }
+
+  .nav-cta {
+    background: var(--accent);
+    color: #0C0C0E !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 100px;
+    font-weight: 500 !important;
+    letter-spacing: 0 !important;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(200,255,87,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 70%, rgba(87,200,255,0.05) 0%, transparent 60%);
+  }
+
+  .hero-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 8vw, 7.5rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(240,238,232,0.35);
+  }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .hero-desc {
+    max-width: 400px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+
+  .hero-desc strong {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #0C0C0E;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .btn-secondary {
+    border: 1px solid var(--line2);
+    color: var(--text);
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.3); transform: translateY(-1px); }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse { 0%,100%{opacity:.3} 50%{opacity:1} }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* ── WHAT I DO (services) ── */
+  .services { border-top: 1px solid var(--line); }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .service-card {
+    background: var(--bg);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    position: relative;
+  }
+  .service-card:hover { background: var(--bg3); }
+
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .service-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+
+  .service-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+
+  .service-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    border: 1px solid var(--line2);
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  /* ── SHOWREEL ── */
+  .showreel { border-top: 1px solid var(--line); background: var(--bg2); }
+
+  .showreel-wrap {
+    border: 1px solid var(--line2);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .showreel-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .play-btn {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    text-decoration: none;
+  }
+  .play-btn:hover { transform: scale(1.08); opacity: 0.9; }
+
+  .play-btn svg { margin-left: 4px; }
+
+  .showreel-note {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .showreel-note a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── WORKS ── */
+  .works { border-top: 1px solid var(--line); }
+
+  .works-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+  }
+
+  .works-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .works-link {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .works-link:hover { border-color: var(--accent); }
+
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .work-card {
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg2);
+    transition: border-color 0.3s, transform 0.3s;
+    text-decoration: none;
+    display: block;
+  }
+  .work-card:hover {
+    border-color: var(--line2);
+    transform: translateY(-3px);
+  }
+
+  .work-thumb {
+    aspect-ratio: 16/10;
+    background: var(--bg3);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .work-thumb-label {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 800;
+    opacity: 0.12;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .work-type-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    background: rgba(12,12,14,0.8);
+    border: 1px solid var(--line2);
+    color: var(--muted);
+  }
+
+  .work-info { padding: 1.25rem; }
+
+  .work-info h4 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+    color: var(--text);
+  }
+
+  .work-info p {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  /* accent colors per card */
+  .c-green .work-thumb { background: linear-gradient(135deg, #0f1a08, #1a2f0e); }
+  .c-green .work-thumb-label { color: var(--accent); }
+  .c-blue .work-thumb { background: linear-gradient(135deg, #081018, #0e1f30); }
+  .c-blue .work-thumb-label { color: var(--accent2); }
+  .c-orange .work-thumb { background: linear-gradient(135deg, #1a0e08, #2f1a0e); }
+  .c-orange .work-thumb-label { color: var(--accent3); }
+
+  /* ── PROCESS ── */
+  .process { border-top: 1px solid var(--line); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .step {
+    padding: 2.5rem 1.75rem;
+    border-right: 1px solid var(--line);
+    position: relative;
+  }
+  .step:last-child { border-right: none; }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 800;
+    color: var(--line2);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .step h4 {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+  }
+
+  .step p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* ── STACK ── */
+  .stack { border-top: 1px solid var(--line); background: var(--bg2); }
+
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .stack-item {
+    background: var(--bg2);
+    padding: 1.75rem 1rem;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .stack-item:hover { background: var(--bg3); }
+
+  .stack-icon {
+    font-size: 22px;
+    margin-bottom: 0.6rem;
+  }
+
+  .stack-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .stack-level {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    border-top: 1px solid var(--line);
+    padding: 8rem 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(200,255,87,0.05) 0%, transparent 70%);
+  }
+
+  .cta-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .cta-section h2 span { color: var(--accent); }
+
+  .cta-section p {
+    font-size: 16px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    position: relative;
+  }
+
+  .cta-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    position: relative;
+  }
+
+  .availability-dot {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .availability-dot::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100%{box-shadow:0 0 0 0 rgba(200,255,87,0.4)}
+    50%{box-shadow:0 0 0 6px rgba(200,255,87,0)}
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 900px) {
+    header { padding: 1rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    section { padding: 4rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .works-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .stack-grid { grid-template-columns: repeat(3, 1fr); }
+    .hero-bottom { flex-direction: column; align-items: flex-start; }
+    nav a:not(.nav-cta) { display: none; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .works-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .cta-section { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="#" class="logo">KB — Motion</a>
+  <nav>
+    <a href="#work">Work</a>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="nav-cta">Let's talk</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-label">Motion Designer — Available for freelance</div>
+  <h1>Motion that<br>makes brands<br><em>move.</em></h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      I design <strong>motion graphics, UI animations and brand films</strong> that help SaaS products, startups and creative brands communicate clearly — and look unforgettable.
+    </p>
+    <div class="hero-actions">
+      <a href="https://www.behance.net/e474e01b" target="_blank" class="btn-primary">
+        View work
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#0C0C0E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:kristinaborovik38@gmail.com" class="btn-secondary">Get in touch</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- SHOWREEL -->
+<section class="showreel" id="work">
+  <div class="section-label">Showreel 2025</div>
+  <div class="showreel-wrap">
+    <div class="showreel-placeholder">
+      <a href="https://www.behance.net/gallery/227708741/Motion-Design-Showreel-2025" target="_blank" class="play-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="#0C0C0E"><path d="M8 5v14l11-7z"/></svg>
+      </a>
+      <p class="showreel-note">Watch on <a href="https://www.behance.net/gallery/227708741/Motion-Design-Showreel-2025" target="_blank">Behance ↗</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED WORKS -->
+<section class="works fade-up">
+  <div class="works-header">
+    <h2 class="works-title">Selected<br>Work</h2>
+    <a href="https://www.behance.net/e474e01b" target="_blank" class="works-link">
+      All projects on Behance ↗
+    </a>
+  </div>
+  <div class="works-grid">
+    <a href="https://www.behance.net/gallery/228882275/Movie-Ticket-Booking-3D-UI-Animation" target="_blank" class="work-card c-blue">
+      <div class="work-thumb">
+        <div class="work-thumb-label">3D UI</div>
+        <span class="work-type-badge">3D · UI Motion</span>
+      </div>
+      <div class="work-info">
+        <h4>Movie Ticket Booking</h4>
+        <p>3D UI animation — app product walkthrough</p>
+      </div>
+    </a>
+    <a href="https://www.behance.net/gallery/218240541/ECOlife" target="_blank" class="work-card c-green">
+      <div class="work-thumb">
+        <div class="work-thumb-label">Brand</div>
+        <span class="work-type-badge">Brand Motion</span>
+      </div>
+      <div class="work-info">
+        <h4>ECOlife</h4>
+        <p>Brand identity animation for eco product</p>
+      </div>
+    </a>
+    <a href="https://www.behance.net/gallery/216252739/Urban-Flow" target="_blank" class="work-card c-orange">
+      <div class="work-thumb">
+        <div class="work-thumb-label">Motion</div>
+        <span class="work-type-badge">Motion · Editorial</span>
+      </div>
+      <div class="work-info">
+        <h4>Urban Flow</h4>
+        <p>Editorial motion design concept</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services fade-up" id="services">
+  <div class="section-label">What I do</div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon" style="background:rgba(200,255,87,0.1);">✦</div>
+      <h3>Brand Motion & Logo Animation</h3>
+      <p>Animated identities, logo reveals and brand films that make your visual system feel alive — consistent across every screen and format.</p>
+      <div class="service-tags">
+        <span class="tag">Logo animation</span>
+        <span class="tag">Brand films</span>
+        <span class="tag">Social assets</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon" style="background:rgba(87,200,255,0.1);">⬡</div>
+      <h3>UI Motion & Product Animation</h3>
+      <p>Micro-interactions, onboarding flows and product demo animations for SaaS and apps. Motion that explains your product better than any screenshot.</p>
+      <div class="service-tags">
+        <span class="tag">UI animation</span>
+        <span class="tag">Product demos</span>
+        <span class="tag">3D UI</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon" style="background:rgba(255,138,87,0.1);">◈</div>
+      <h3>Social & Short-Form Content</h3>
+      <p>Reels, Stories and animated ads that stop the scroll. Optimized for Instagram, TikTok and LinkedIn — delivered fast, on-brand and ready to publish.</p>
+      <div class="service-tags">
+        <span class="tag">Reels & Stories</span>
+        <span class="tag">Animated ads</span>
+        <span class="tag">Short-form</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process fade-up" id="process">
+  <div class="section-label">How I work</div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Brief & Discovery</h4>
+      <p>I learn your brand, goals and audience. We align on tone, style and deliverables before any pixel moves.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Concept & Storyboard</h4>
+      <p>Style frames and motion direction for your approval. No surprises — you see the vision before production starts.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Production</h4>
+      <p>I animate, refine and deliver. Two revision rounds included. Clear communication throughout — async-friendly.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Delivery</h4>
+      <p>Final files in every format you need. MP4, GIF, transparent, loopable — whatever your team requires.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section class="stack fade-up">
+  <div class="section-label">Tools & Stack</div>
+  <div class="stack-grid">
+    <div class="stack-item">
+      <div class="stack-icon">🎬</div>
+      <span class="stack-name">After Effects</span>
+      <span class="stack-level">Advanced</span>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🔷</div>
+      <span class="stack-name">Illustrator</span>
+      <span class="stack-level">Advanced</span>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🟦</div>
+      <span class="stack-name">Photoshop</span>
+      <span class="stack-level">Advanced</span>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🧊</div>
+      <span class="stack-name">Blender</span>
+      <span class="stack-level">Intermediate</span>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">🎨</div>
+      <span class="stack-name">Figma</span>
+      <span class="stack-level">UI Motion</span>
+    </div>
+    <div class="stack-item">
+      <div class="stack-icon">▶️</div>
+      <span class="stack-name">Animate</span>
+      <span class="stack-level">Proficient</span>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="cta-bg"></div>
+  <div class="availability-dot">Available for new projects</div>
+  <h2>Let's make<br>something <span>great.</span></h2>
+  <p>Whether you need a brand animation, a product demo or ongoing motion support — I'm ready to help. Let's talk about your project.</p>
+  <div class="cta-actions">
+    <a href="mailto:kristinaborovik38@gmail.com" class="btn-primary">
+      Email me
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M7 2l5 5-5 5" stroke="#0C0C0E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <a href="https://www.linkedin.com/in/krystsina-baravik-241741326/" target="_blank" class="btn-secondary">LinkedIn</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 Krystsina Baravik</span>
+  <div class="footer-links">
+    <a href="https://www.behance.net/e474e01b" target="_blank">Behance</a>
+    <a href="https://www.linkedin.com/in/krystsina-baravik-241741326/" target="_blank">LinkedIn</a>
+    <a href="mailto:kristinaborovik38@gmail.com">Email</a>
+  </div>
+  <span>Based in Poland · Working worldwide</span>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
