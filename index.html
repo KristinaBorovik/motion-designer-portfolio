@@ -140,9 +140,8 @@
   }
 
   .hero h1 em {
-    font-style: normal;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(240,238,232,0.35);
+    font-style: italic;
+    color: var(--accent);
   }
 
   .hero-bottom {
@@ -365,16 +364,18 @@
 
   .work-card {
     border: 1px solid var(--line);
-    border-radius: 12px;
+    border-radius: 14px;
     overflow: hidden;
     background: var(--bg2);
-    transition: border-color 0.3s, transform 0.3s;
+    transition: border-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
     text-decoration: none;
     display: block;
+    position: relative;
   }
   .work-card:hover {
     border-color: var(--line2);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.35);
   }
 
   .work-thumb {
@@ -387,16 +388,28 @@
     justify-content: center;
   }
 
+  .work-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55) 100%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .work-card:hover .work-thumb::after { opacity: 1; }
+
   .work-thumb-label {
     font-family: var(--font-display);
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
-    opacity: 0.12;
+    opacity: 0.14;
     text-transform: uppercase;
     letter-spacing: -0.02em;
     text-align: center;
     padding: 1rem;
+    transition: opacity 0.35s ease, transform 0.35s ease;
   }
+  .work-card:hover .work-thumb-label { opacity: 0.22; transform: scale(1.04); }
 
   .work-type-badge {
     position: absolute;
@@ -411,7 +424,26 @@
     background: rgba(12,12,14,0.8);
     border: 1px solid var(--line2);
     color: var(--muted);
+    z-index: 2;
   }
+
+  .work-arrow {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 2;
+  }
+  .work-card:hover .work-arrow { opacity: 1; transform: translateY(0); }
 
   .work-info { padding: 1.25rem; }
 
@@ -484,7 +516,7 @@
 
   .stack-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(7, 1fr);
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
@@ -640,11 +672,11 @@
 
 <section class="hero">
   <div class="hero-bg"></div>
-  <div class="hero-label">Motion Designer — Available for freelance</div>
+  <div class="hero-label">Motion Designer</div>
   <h1>Motion that<br>makes brands<br><em>move.</em></h1>
   <div class="hero-bottom">
     <p class="hero-desc">
-      I design <strong>motion graphics, UI animations and brand films</strong> that help SaaS products, startups and creative brands communicate clearly — and look unforgettable.
+      I design <strong>2D and 3D motion graphics, UI animations and brand films</strong> that turn static ideas into products people remember — for SaaS teams, startups and creative brands.
     </p>
     <div class="hero-actions">
       <a href="https://www.behance.net/e474e01b" target="_blank" class="btn-primary">
@@ -661,9 +693,9 @@
 </section>
 
 <section class="showreel" id="work">
-  <div class="section-label">Showreel 2025</div>
+  <div class="section-label">Showreel 2026</div>
   <div class="showreel-wrap">
-    <iframe src="https://player.vimeo.com/video/1095973295?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Showreel 2025 motion design"></iframe>
+    <iframe src="https://player.vimeo.com/video/1225959828?h=2e9af5ccab&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Showreel 2026 motion design"></iframe>
   </div>
 </section>
 
@@ -675,45 +707,48 @@
     </a>
   </div>
   <div class="works-grid">
-   <a href="https://www.behance.net/gallery/250428003/3D-Motion-Design-Cart-Retargeting-Campaign"
-   target="_blank" class="work-card c-purple">
-  <div class="work-thumb">
-    <div class="work-thumb-label">3D Ads</div>
-    <span class="work-type-badge">3D · Ad Campaign</span>
-  </div>
-  <div class="work-info">
-    <h4>Cart Retargeting Campaign</h4>
-    <p>3D motion ads for e-commerce retargeting</p>
-  </div>
-</a>
-    <a href="https://www.behance.net/gallery/228882275/Movie-Ticket-Booking-3D-UI-Animation" target="_blank" class="work-card c-blue">
+    <a href="https://www.behance.net/gallery/255585533/Motion-Design-Showreel-2026-2D3D-Animation" target="_blank" class="work-card c-purple">
       <div class="work-thumb">
-        <div class="work-thumb-label">3D UI</div>
-        <span class="work-type-badge">3D · UI Motion</span>
+        <div class="work-thumb-label">Reel</div>
+        <span class="work-type-badge">Showreel · 2D/3D</span>
+        <span class="work-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 10L10 4M10 4H5M10 4V9" stroke="#0C0C0E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="work-info">
-        <h4>Movie Ticket Booking</h4>
-        <p>3D UI animation — app product walkthrough</p>
+        <h4>Motion Design Showreel 2026</h4>
+        <p>2D/3D animation reel — full portfolio piece</p>
+      </div>
+    </a>
+    <a href="https://www.behance.net/gallery/250428003/3D-Motion-Design-Cart-Retargeting-Campaign" target="_blank" class="work-card c-blue">
+      <div class="work-thumb">
+        <div class="work-thumb-label">3D Ads</div>
+        <span class="work-type-badge">3D · Ad Campaign</span>
+        <span class="work-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 10L10 4M10 4H5M10 4V9" stroke="#0C0C0E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="work-info">
+        <h4>Cart Retargeting Campaign</h4>
+        <p>3D motion ads for e-commerce retargeting</p>
       </div>
     </a>
     <a href="https://www.behance.net/gallery/218240541/ECOlife" target="_blank" class="work-card c-green">
       <div class="work-thumb">
         <div class="work-thumb-label">Brand</div>
         <span class="work-type-badge">Brand Motion</span>
+        <span class="work-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 10L10 4M10 4H5M10 4V9" stroke="#0C0C0E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="work-info">
         <h4>ECOlife</h4>
         <p>Brand identity animation for eco product</p>
       </div>
     </a>
-    <a href="https://www.behance.net/gallery/216252739/Urban-Flow" target="_blank" class="work-card c-orange">
+    <a href="https://www.behance.net/gallery/215274957/Paradox-of-choice" target="_blank" class="work-card c-orange">
       <div class="work-thumb">
-        <div class="work-thumb-label">Motion</div>
-        <span class="work-type-badge">Motion · Editorial</span>
+        <div class="work-thumb-label">2D</div>
+        <span class="work-type-badge">2D · Concept</span>
+        <span class="work-arrow"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M4 10L10 4M10 4H5M10 4V9" stroke="#0C0C0E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="work-info">
-        <h4>Urban Flow</h4>
-        <p>Editorial motion design concept</p>
+        <h4>Paradox of Choice</h4>
+        <p>2D illustration and motion concept</p>
       </div>
     </a>
   </div>
@@ -813,6 +848,11 @@
       <span class="stack-level">UI Motion</span>
     </div>
     <div class="stack-item">
+      <div class="stack-icon">✂️</div>
+      <span class="stack-name">Premiere Pro</span>
+      <span class="stack-level">Advanced</span>
+    </div>
+    <div class="stack-item">
       <div class="stack-icon">▶️</div>
       <span class="stack-name">Animate</span>
       <span class="stack-level">Proficient</span>
@@ -835,7 +875,7 @@
 </section>
 
 <footer>
-  <span>© 2025 Krystsina Baravik</span>
+  <span>© 2026 Krystsina Baravik</span>
   <div class="footer-links">
     <a href="https://www.behance.net/e474e01b" target="_blank">Behance</a>
     <a href="https://www.linkedin.com/in/krystsina-baravik-241741326/" target="_blank">LinkedIn</a>
